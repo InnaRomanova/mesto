@@ -10,10 +10,8 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
-
 @import url(../blocks/profile/__paragraph/profile__paragraph.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__add-button/_plus/profile__add-button_plus.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__contain/elements__contain.css);
 @import url(../blocks/elements/__image/elements__image.css);
@@ -23,6 +21,18 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
 
+
+.elements__item {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    
+    justify-content: space-between;
+    padding-left: 21px;
+    padding-right: 15px;
+    padding-top: 25px;
+    padding-bottom: 31px;
+}
 
 .popup__container {
     max-width: 430px;
@@ -117,7 +127,7 @@
     border: 0;
 }
 
-popup__button-close:hover {
+.popup__button-close:hover {
     opacity: 0.6;
     cursor: pointer;
 }
