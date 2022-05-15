@@ -1,0 +1,23 @@
+.elements {
+    /*max-width: 880px;
+    min-height: 744px;*/
+    padding: 0 0 67px;
+    margin: 0 200px;
+    display: grid;
+    /*grid-template-columns: repeat(3, 1fr);*/
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    gap: 20px 17px;
+    justify-content: center;
+}
+
+@media screen and (max-width: 575px) {
+    .elements {
+        /*max-width: 282px;
+        min-height: 2268px;
+        grid-template-columns: repeat(1, 1fr);*/
+        gap: 20px;
+        margin-left: 19px;
+        margin-right: 19px;
+        padding-bottom: 48px;
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+    <div class="page__wrapper">
+        <!-- блок header -->
+        <header class="header">
+            <img class="header__logo" src="./images/logo-1.svg" alt="логотип">
+        </header>
+        <main class="content">
+
+            <!-- секция profile -->
+            <section class="profile">
+                <img class="profile__image profile__image_avatar" src="./images/image.jpg" alt="аватар">
+                <div class="profile__info">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button" type="button" title="Редактировать"></button>
+                    <p class="profile__paragraph">Исследователь океана</p>
+                </div>
+                <button class="profile__add-button profile__add-button_plus" type="button"
+                    title="Добавить фотографию"></button>
+            </section>
+            <!-- секция elements -->
+            <section class="elements">
+                <div class="elements__contain">
+                    <img src="./images/Karachaevsk.jpg" alt="Карачаевск" class="elements__image">
+                    <h2 class="elements__name">Карачаевск<button class="elements__button_like"></button></h2>
+                </div>
+                <div class="elements__contain">
+                    <img src="./images/gora-elbrus.jpg" alt="Гора Эльбрус" class="elements__image">
+                    <h2 class="elements__name">Гора Эльбрус<button class="elements__button_like"></button></h2>
+                </div>
+                <div class="elements__contain">
+                    <img src="./images/Editorial.jpg" alt="Фотограф" class="elements__image">
+                    <h2 class="elements__name">Фотограф<button class="elements__button_like"></button></h2>
+                </div>
+                <div class="elements__contain">
+                    <img src="./images/list.jpg" alt="Листья" class="elements__image">
+                    <h2 class="elements__name">Ручная работа<button class="elements__button_like"></button></h2>
+                </div>
+                <div class="elements__contain">
+                    <img src="./images/dombai.jpg" alt="Домбай" class="elements__image">
+                    <h2 class="elements__name">Домбай<button class="elements__button_like"></button></h2>
+                </div>
+                <div class="elements__contain">
+                    <img src="./images/Karachaevsk.jpg" alt="Карачаево-Черкессия" class="elements__image">
+                    <h2 class="elements__name">Карачаево-Ч...<button class="elements__button_like"></button></h2>
+                </div>
+            </section>
+            <!-- блок footer -->
+            <footer class="footer">
+                <p class="footer__copyright">&copy; 2022. Mesto Russia</p>
+            </footer>
+        </main>
+    </div>
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__button-close" id="close-button" type="button" value="close"></button>
+            <form class="form" id="form" name="form" action="#" method="post">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <fieldset class="form__user">
+                    <input class="form__item" type="text" id="profile__name" name="profile__name"
+                        placeholder="Жак-Ив Кусто" minlength="5" maxlength="30" autocomplete="off" value="Жак-Ив Кусто" required>
+                    <input class="form__item" type="text" id="profile__paragraph" name="profile__paragraph"
+                        placeholder="Исследователь океана" minlength="5" maxlength="50" autocomplete="off" value="Исследователь океана"
+                        required>
+                </fieldset>
+                <button class="form__button" type="submit" value="save" name="profile__save">Сохранить</button>
+            </form>
+        </div>
+        
+    </div>
+    <script src="./scripts/script.js"></script>
+</body>
+
+</html>
