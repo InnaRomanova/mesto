@@ -1,7 +1,7 @@
-.elements__button_like {
+.elements__button-like {
     width: 22px;
     height: 19px;
-    background-image: url(../../../../images/elements__Vector.svg);
+    background-image: url(../../../images/elements__Vector.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
@@ -10,10 +10,10 @@
     padding: 10px;
 }
 
-.elements__button_like:hover {
+.elements__button-like:hover {
     opacity: 0.5;
 }
 
-.elements__button_like:active {
+.elements__button-like:active {
     background: #000000;
 }
