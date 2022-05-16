@@ -29,9 +29,11 @@
 
 **Проект**
 
-[Ссылка на готовый проект]()
-**В данном проекте:**
+[Ссылка на готовый проект](https://innaromanova.github.io/mesto/)
+
+**В данном проекте: :white_check_mark: - возможно :white_large_square: - в планах в ближайшее время.**
+
 :white_check_mark: редактировать профиль;    
-:white_large_square: добавлять фотографии;
-:white_large_square: удалять фотографии;
+:white_large_square: добавлять фотографии;    
+:white_large_square: удалять фотографии;    
 :white_large_square: ставить лайки.
