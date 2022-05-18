@@ -11,7 +11,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 22px 22px;
-    margin: 35px 0 35px auto;
+    margin: 40px 0 35px auto;
     padding: 14px 64px;
 }
 
@@ -21,8 +21,8 @@
 
 @media screen and (max-width: 1083px) {
     .profile__add-button {
-        width: 282px;
-        margin-top: 36px;
+        width: 100%;
+        margin-top: 20px;
         margin-bottom: 0;
         margin-left: 0;
         background-size: 16px 16px;
