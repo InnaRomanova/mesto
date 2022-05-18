@@ -1,17 +1,17 @@
 .form__item {
     width: 100%;
-    border: 0;
     border: 1px solid rgb(255, 255, 255, .2);
+    border-bottom-style: groove;
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     margin: 0;
-    padding: 0 0 13px;
+    padding: 0 0 9px;
     color: #000000;
 }
 
-.form__item:last-child {
-    margin-top: 30px;
+.form__item:last-of-type {
+    margin-top: 29px;
 }

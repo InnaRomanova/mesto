@@ -1,5 +1,11 @@
 .form__user {
     margin: 0;
-    padding: 0;
+    padding: 48px 0 0;
     border: 0;
+}
+
+@media screen and (max-width: 1083px) {
+    .form__user {
+        padding-top: 73px;
+    }
 }

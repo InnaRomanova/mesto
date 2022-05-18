@@ -14,6 +14,8 @@ const form = document.querySelector('.form');
 
 function openPopup() {
     popup.classList.add('popup_opened');
+    formName.value = ProfileName.textContent;
+    formParagraph.value = ProfileParagraph.textContent;
 }
 
 function closePopup() {
@@ -34,6 +36,7 @@ function formSubmitHandler (evt) {
 }
 profileeditbutton.addEventListener('click', openPopup);
 popupbuttonclose.addEventListener('click', closePopup);
+formElement.addEventListener('submit', formSubmitHandler);
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 /*formElement.addEventListener('submit', formSubmitHandler);*/

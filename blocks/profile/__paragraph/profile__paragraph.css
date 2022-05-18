@@ -1,12 +1,15 @@
 .profile__paragraph {
     margin: 0;
-    padding: 0;
+    padding: 0 0 11px 0;
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 1083px) {
@@ -16,6 +19,6 @@
         font-size: 14px;
         line-height: 17px;
         text-align: center;
-        margin-top: 14px;
+        margin: 9px 30px 0 0;
     }
 }
