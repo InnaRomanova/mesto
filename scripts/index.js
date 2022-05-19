@@ -21,8 +21,7 @@ function openPopup() {
 function closePopup() {
     popup.classList.remove('popup_opened');
 }
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+
 function formSubmitHandler (evt) {
     evt.preventDefault();
     ProfileName.textContent = formName.value;
@@ -36,7 +35,7 @@ function formSubmitHandler (evt) {
 }
 profileeditbutton.addEventListener('click', openPopup);
 popupbuttonclose.addEventListener('click', closePopup);
-formElement.addEventListener('submit', formSubmitHandler);
+form.addEventListener('submit', formSubmitHandler);
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 /*formElement.addEventListener('submit', formSubmitHandler);*/

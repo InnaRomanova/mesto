@@ -12,6 +12,7 @@
     color: #FFFFFF;
     padding: 0;
     margin: 48px 0 0;
+    border: none;
 }
 
 .form__button:hover {
