@@ -107,21 +107,25 @@ function formPlaceSubmitHandler(evt) {
     addCard(placeInputLink, placeInputName);
     closePopup(PopupPhoto);
 }
-/*
+
 const Popup = document.querySelector('.popup');
-const ImageOpen = document.querySelector('#Image-Open');
+const PopupOpenCard = document.querySelector('.popup_open-card');
 const PopupImage = document.querySelector('popup__image');
 const PopupCaption = document.querySelector('popup__caption');
 const CloseImage = document.querySelector('#close-image');
 const cardImage = document.querySelector('.elements__image');
 const cardName = document.querySelector('.elements__name');
-function PopupPhoto(photo) {
-    document.getElementsByClassName('.elements__image')
-}*/
 
-ProfileAddButton.addEventListener('click', () => openPopup(PopupPhoto));
+function card(link, name) {
+    PopupImage.src = link;
+    PopupImage.alt = name;
+    PopupCaption = textContent.name;
+    openPopup(PopupOpenCard);
+    }
+
+ ProfileAddButton.addEventListener('click', () => openPopup(PopupPhoto));
 CloseBtn.addEventListener('click', () => closePopup(PopupPhoto));
 ButtonForm.addEventListener('submit', formPlaceSubmitHandler);
-
+CloseImage.addEventListener('click', () => closePopup(PopupOpenCard));
 
 
