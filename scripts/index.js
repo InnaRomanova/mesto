@@ -28,8 +28,9 @@ const initialCards = [
 
 //profile__edit-button
 const popupProfile = document.querySelector('#popup-profile');
-const profileeditbutton = document.querySelector('.profile__edit-button');
-const popupbuttonclose = document.querySelector('.popup__button-close');
+const popupPhoto = document.querySelector('.popup-photo');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popupButtonClose = document.querySelector('.popup__close-button');
 const ProfileName = document.querySelector('.profile__name');
 const ProfileParagraph = document.querySelector('.profile__paragraph');
 const formName = document.querySelector('#profile__name');
@@ -39,25 +40,41 @@ const form = document.querySelector('#form');
 
 const ProfileAddButton = document.querySelector('.profile__add-button');
 const CloseBtn = document.querySelector('#close-Btn');
-const PopupPhoto = document.querySelector('#popup-photo');
 const Elements = document.querySelector('.elements');
 const ButtonForm = document.querySelector('#button-form');
 const ElementCard = document.querySelector('#elements-card');
 const ElementsBlock = document.querySelector('.elements__block');
 
-function openPopup(item) {
+const Popup = document.querySelector('.popup');
+const PopupOpenCard = document.querySelector('.popup_open-card'); 
+const PopupImage = document.querySelector('.popup__image');
+const PopupCaption = document.querySelector('.popup__caption');
+const CloseImage = document.querySelector('#close-image');
+const cardImage = document.querySelector('.elements__image');
+const cardName = document.querySelector('.elements__name');
+
+/*
+В функцию openPopup передаются два аргумента и для второго используется значение по умолчанию
+Если в функцию передано два параметра (стр. photoOpenButton.forEach...), то мы обрабатываем попап с отображением картинки
+Иначе обрабатываем, как редактирование профиля
+*/
+
+function openPopup(item, image = false) {
     item.classList.add('popup_opened');
-    formName.value = ProfileName.textContent;
-    formParagraph.value = ProfileParagraph.textContent;
+    if(image){
+        PopupImage.src = image.src;
+        PopupImage.alt = image.alt;
+        PopupCaption.innerHTML = image.alt;
+    }
+    else{
+        formName.value = ProfileName.textContent;
+        formParagraph.value = ProfileParagraph.textContent;
+    }
 }
 
-profileeditbutton.addEventListener('click', () => {
-    openPopup(popupProfile)
-});
-
-popupbuttonclose.addEventListener('click', () => {
-    closePopup(popupProfile)
-});
+function closePopup(item) {
+    item.classList.remove('popup_opened');
+}
 
 form.addEventListener('submit', formSubmitHandler);
 
@@ -84,9 +101,7 @@ function addCard(link, name) {
     ElementsContain.prepend(card);
 }
 
-function closePopup(item) {
-    item.classList.remove('popup_opened');
-}
+
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -105,27 +120,17 @@ function formPlaceSubmitHandler(evt) {
     //ElementsContain[ElementsContain.length - 1].remove();
 
     addCard(placeInputLink, placeInputName);
-    closePopup(PopupPhoto);
+    closePopup(popupPhoto);
 }
 
-const Popup = document.querySelector('.popup');
-const PopupOpenCard = document.querySelector('.popup_open-card');
-const PopupImage = document.querySelector('popup__image');
-const PopupCaption = document.querySelector('popup__caption');
-const CloseImage = document.querySelector('#close-image');
-const cardImage = document.querySelector('.elements__image');
-const cardName = document.querySelector('.elements__name');
+const photoOpenButton = document.querySelectorAll('.photo__open-button'); // querySelectorAll получения списка элементов по селектору
+const photoCloseButton = document.querySelector('.photo__close-button');
 
-function card(link, name) {
-    PopupImage.src = link;
-    PopupImage.alt = name;
-    PopupCaption = textContent.name;
-    openPopup(PopupOpenCard);
-    }
-
- ProfileAddButton.addEventListener('click', () => openPopup(PopupPhoto));
-CloseBtn.addEventListener('click', () => closePopup(PopupPhoto));
+profileEditButton.addEventListener('click', () => {openPopup(popupProfile)});
+popupButtonClose.addEventListener('click', () => {closePopup(popupProfile)});
+ProfileAddButton.addEventListener('click', () => openPopup(popupPhoto));
+CloseBtn.addEventListener('click', () => closePopup(popupPhoto));
 ButtonForm.addEventListener('submit', formPlaceSubmitHandler);
-CloseImage.addEventListener('click', () => closePopup(PopupOpenCard));
-
-
+photoCloseButton.addEventListener('click', () => {closePopup(PopupOpenCard)});
+// К каждой картинке карточки через forEach Добавляется событие popup
+photoOpenButton.forEach(element => element.addEventListener('click', () => {openPopup(PopupOpenCard, element)}));

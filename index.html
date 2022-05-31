@@ -40,7 +40,7 @@
     </div>
     <div class="popup" id="popup-profile">
         <div class="popup__container">
-            <button class="popup__button-close" id="close-button" type="button" value="close"></button>
+            <button class="popup__close-button" id="close-button" type="button" value="close"></button>
             <form class="form" id="form" name="form" method="post">
                 <h2 class="form__title">Редактировать профиль</h2>
                 <fieldset class="form__user">
@@ -54,35 +54,37 @@
             </form>
         </div>
     </div>
-    <div class="popup" id="popup-photo">
+    <div class="popup popup-photo">
         <div class="popup__container">
-            <button class="popup__button-close" id="close-Btn" type="button" value="close"></button>
+            <button class="popup__close-button" id="close-Btn" type="button" value="close"></button>
             <form class="form" id="button-form" name="form" method="post">
                 <h2 class="form__title">Новое место</h2>
                 <fieldset class="form__user">
-                    <input class="form__item" type="text" id="elements__name" name="elements__name" placeholder=""
-                        autocomplete="off" value="Название" required>
+                    <input class="form__item" type="text" id="elements__name" name="elements__name"
+                        placeholder="Название" required>
                     <input class="form__item" type="url" id="elements__image" name="elements__image"
-                        placeholder="Ссылка на картинку" minlength="5" maxlength="500" autocomplete="off"
-                        value="Ссылка на картинку" required>
+                        placeholder="Ссылка на картинку" required>
                 </fieldset>
                 <button class="form__button" type="submit" name="profile__save" value="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
     <div class="popup popup_open-card">
-        <figure class="popup__wrapper">
-            <img src="#" alt="#" class="popup__image">
-            <button class="popup__button-close" id="close-Image" type="button" value="close"></button>
-            <figcaption class="popup__caption"></figcaption></figure>
+        <div class="popup__content">
+            <button class="photo__close-button" type="button" value="close"></button>
+            <figure class="popup__wrapper">
+                <img src="#" alt="#" class="popup__image">
+                <figcaption class="popup__caption"></figcaption>
+            </figure>
         </div>
-        <template id="elements-card">
+    </div>
+    <template id="elements-card">
         <li class="elements__block">
             <button class="elements__button-delete" type="button" aria-label="Удалить"></button>
-            <img src="#" alt="#" class="elements__image">
+            <img src="#" alt="#" class="elements__image photo__open-button">
             <div class="elements__item">
-                <h2 class="elements__name">Карачаевск</h2><button class="elements__button-like" type="button"
-                    aria-label="Лайк"></button>
+                <h2 class="elements__name">Карачаевск</h2>
+                <button class="elements__button-like" type="button" aria-label="Лайк"></button>
             </div>
         </li>
     </template>
