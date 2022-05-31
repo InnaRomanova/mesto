@@ -34,6 +34,6 @@
 **В данном проекте: :white_check_mark: - возможно :white_large_square: - в планах в ближайшее время.**
 
 :white_check_mark: редактировать профиль;    
-:white_large_square: добавлять фотографии;    
-:white_large_square: удалять фотографии;    
-:white_large_square: ставить лайки.
+:white_check_mark: добавлять фотографии;    
+:white_check_mark: удалять фотографии;    
+:white_check_mark: ставить лайки.
