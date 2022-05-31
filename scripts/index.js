@@ -49,7 +49,7 @@ const Popup = document.querySelector('.popup');
 const PopupOpenCard = document.querySelector('.popup_open-card'); 
 const PopupImage = document.querySelector('.popup__image');
 const PopupCaption = document.querySelector('.popup__caption');
-const CloseImage = document.querySelector('#close-image');
+
 const cardImage = document.querySelector('.elements__image');
 const cardName = document.querySelector('.elements__name');
 
@@ -124,7 +124,7 @@ function formPlaceSubmitHandler(evt) {
 }
 
 const photoOpenButton = document.querySelectorAll('.photo__open-button'); // querySelectorAll получения списка элементов по селектору
-const photoCloseButton = document.querySelector('.photo__close-button');
+const photoCloseButton = document.querySelector('#Close-card');
 
 profileEditButton.addEventListener('click', () => {openPopup(popupProfile)});
 popupButtonClose.addEventListener('click', () => {closePopup(popupProfile)});
