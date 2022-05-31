@@ -1,10 +1,8 @@
 .elements__contain {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px 17px;
     padding: 0 0 67px;
     margin: 0 200px;
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
 }
