@@ -8,6 +8,7 @@
     border: none;
     margin: 0 5px 0 0;
     padding: 10px;
+    cursor: pointer;
 }
 
 .elements__button-like:hover {
