@@ -14,7 +14,3 @@
 .elements__button-like:hover {
     opacity: 0.5;
 }
-
-.elements__button-like:active {
-    background: #000000;
-}
