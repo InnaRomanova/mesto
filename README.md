@@ -23,11 +23,13 @@
 * Резиновая и адаптивная верстка.
 * Использование form.
 * Реализация popup_opened на java script.
+* Валидация форм
 
 **Figma**
 
-* В Фигме размещен макет, в котором проект, как должен выглядеть на самых распространённых разрешениях экранов.
-* [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+В Фигме размещен макет, в котором проект, как должен выглядеть проект.
+* [Ссылка на макет в Figma 5 спринт](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+* [Ссылка на макет в Figma 6 спринт](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 **Проект**
 
