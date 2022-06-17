@@ -7,12 +7,12 @@ const profileName = document.querySelector('.profile__name');
 const profileParagraph = document.querySelector('.profile__paragraph');
 const formName = document.querySelector('#profile__name');
 const formParagraph = document.querySelector('#profile__paragraph');
-const form = document.querySelector('#form');
-const btnAddSubmit = document.querySelector('.form__button');
+const formProfile = document.querySelector('#form_profile');
+const formPhoto = document.querySelector('#form_photo');
+const photoAddSubmit = document.querySelector('#form__button__photo');
 
 const profileAddButton = document.querySelector('.profile__add-button');
 const photoPopupCloseButton = document.querySelector('#close-Btn');
-const formButton = document.querySelector('#button-form');
 const cardsOpenPopup = document.querySelector('.popup_open-card');
 const imagePopup = document.querySelector('.popup__image');
 const captionPopup = document.querySelector('.popup__caption');
@@ -31,15 +31,20 @@ const deleteCard = event => event.target.closest('.elements__block').remove();
 */
 
 //функция открытия попапа редактирования профайла
-function openPopupForm(item) {
+function openPopupProfile(item) {
     addClassOpened(item);//открытие попапа
     formName.value = profileName.textContent;
     formParagraph.value = profileParagraph.textContent;
 }
 
+function openPopupPhoto(item) {
+    // возможно добавление действия очистки полей перед открытием
+    addClassOpened(item);//открытие попапа
+}
+
 //функция открытия попапа добавления фото
-function openPopupImage(item, image) {
-    addClassOpened(item);
+function openPopupImage(image) {
+    addClassOpened(cardsOpenPopup);
     imagePopup.src = image.src;
     imagePopup.alt = image.alt;
     captionPopup.textContent = image.alt;
@@ -49,13 +54,14 @@ function openPopupImage(item, image) {
 function addClassOpened(item) {
     item.classList.add('popup_opened');
     item.addEventListener('click', detectClickOverlay);
-    disableSubmitButton(btnAddSubmit);
+    document.addEventListener('keyup', handlePopupCloseEsc);
 }
 
 //функция закрытия попапа
 function closePopup(item) {
     item.classList.remove('popup_opened');
     item.removeEventListener('click', detectClickOverlay);
+    document.removeEventListener('keyup', handlePopupCloseEsc);
 }
 
 //функция закрытия попапа при клике на Overlay(вне попапа)
@@ -72,9 +78,7 @@ function detectClickOverlay(evt) {
 function handlePopupCloseEsc(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        if (openedPopup) {
-            openedPopup.classList.remove('popup_opened');
-        }
+        openedPopup.classList.remove('popup_opened');
     }
 }
 
@@ -106,7 +110,7 @@ function createCard(link, name) {
 
     card.querySelector('.elements__button-like').addEventListener('click', buttonLike);
     card.querySelector('.elements__button-delete').addEventListener('click', deleteCard);
-    card.querySelector('.photo__open-button').addEventListener('click', () => openPopupImage(cardsOpenPopup, cardImage));
+    card.querySelector('.photo__open-button').addEventListener('click', () => openPopupImage(cardImage));
     // Добавлен обработчик событий для картинки. При клике на картинку вызывается функция openPopupImage и открывает popup с картинкой
     return card;
 }
@@ -122,14 +126,9 @@ function formPlaceSubmitHandler(evt) {
     // Действие предотвращающeе обновление страницы
     evt.preventDefault();
     addCard(placeInputLink, placeInputName);
-    formButton.reset();
+    formPhoto.reset();
+    disableSubmitButton(photoAddSubmit);
     closePopup(popupPhoto);
-}
-
-// функция добавления неактивной кнопки _disabled при открытии попапа
-function disableSubmitButton(button) {
-    button.classList.add('form__button_disabled'); // добавляет кнопке класс form__button_disabled
-    button.setAttribute('disabled', true);
 }
 
 // Бизнес логика
@@ -141,11 +140,10 @@ window.onload = function () {
 };
 
 // Обработчики событий
-form.addEventListener('submit', formSubmitHandler);
-profileEditButton.addEventListener('click', () => { openPopupForm(popupProfile) });
+formProfile.addEventListener('submit', formSubmitHandler);
+formPhoto.addEventListener('submit', formPlaceSubmitHandler);
+profileEditButton.addEventListener('click', () => { openPopupProfile(popupProfile) });
 popupCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
-profileAddButton.addEventListener('click', () => openPopupForm(popupPhoto));
+profileAddButton.addEventListener('click', () => openPopupPhoto(popupPhoto));
 photoPopupCloseButton.addEventListener('click', () => closePopup(popupPhoto));
-formButton.addEventListener('submit', formPlaceSubmitHandler);
 photoCloseButton.addEventListener('click', () => { closePopup(cardsOpenPopup) });
-document.addEventListener('keyup', handlePopupCloseEsc);

@@ -32,12 +32,20 @@ function hasInvalidInput(inputList) {
 // Б. Проверка инпутов на валидацию и выставление статуса кнопки
 function toggleButtonState(config, inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.disabledButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    disableSubmitButton(buttonElement);
   } else {
-    buttonElement.classList.remove(config.disabledButtonClass);
-    buttonElement.removeAttribute('disabled');
+    enableSubmitButton(buttonElement);
   }
+}
+
+function disableSubmitButton(button) {
+  button.classList.add('form__button_disabled');
+  button.setAttribute('disabled', true);
+}
+
+function enableSubmitButton(button) {
+  button.classList.remove('form__button_disabled');
+  button.removeAttribute('disabled');
 }
 
 // 2. Выставляет статус для кнопки(активная/неактивная).
