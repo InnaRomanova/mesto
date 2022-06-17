@@ -78,7 +78,9 @@ function detectClickOverlay(evt) {
 function handlePopupCloseEsc(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        openedPopup.classList.remove('popup_opened');
+        if (openedPopup) {
+            openedPopup.classList.remove('popup_opened');
+        }
     }
 }
 
