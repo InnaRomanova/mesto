@@ -126,6 +126,12 @@ function formPlaceSubmitHandler(evt) {
     closePopup(popupPhoto);
 }
 
+// функция добавления неактивной кнопки _disabled при открытии попапа
+function disableSubmitButton(button) {
+    button.classList.add('form__button_disabled'); // добавляет кнопке класс form__button_disabled
+    button.setAttribute('disabled', true);
+}
+
 // Бизнес логика
 // Создание карточек происходит после загрузки страницы
 window.onload = function () {
@@ -133,11 +139,6 @@ window.onload = function () {
         addCard(initialCards[i].link, initialCards[i].name);
     }
 };
-
-function disableSubmitButton(button) {
-    button.classList.add('form__button_disabled');
-    button.setAttribute('disabled', true);
-}
 
 // Обработчики событий
 form.addEventListener('submit', formSubmitHandler);
