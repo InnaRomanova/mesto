@@ -56,7 +56,7 @@ function setEventListeners(config, formElement) {
   });
 }
 
-//1. Для каждой формы: отключаем поведения submint у кнопок и вызываем функцию 2. setEventListeners
+//1. Для каждой формы: отключает поведения submint у кнопок и вызываем функцию 2. setEventListeners
 function enableValidation({ formSelector, ...config }) {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
