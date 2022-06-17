@@ -67,10 +67,7 @@ function closePopup(item) {
 //функция закрытия попапа при клике на Overlay(вне попапа)
 function detectClickOverlay(evt) {
     if (evt.target === evt.currentTarget) {
-        const openedPopup = document.querySelector('.popup_opened');
-        if (openedPopup) {
-            openedPopup.classList.remove('popup_opened');
-        }
+        this.classList.remove('popup_opened');
     }
 }
 
@@ -78,7 +75,9 @@ function detectClickOverlay(evt) {
 function handlePopupCloseEsc(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        openedPopup.classList.remove('popup_opened');
+        if (openedPopup) {
+            openedPopup.classList.remove('popup_opened');
+        }
     }
 }
 
