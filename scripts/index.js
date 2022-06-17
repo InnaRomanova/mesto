@@ -8,6 +8,7 @@ const profileParagraph = document.querySelector('.profile__paragraph');
 const formName = document.querySelector('#profile__name');
 const formParagraph = document.querySelector('#profile__paragraph');
 const form = document.querySelector('#form');
+const btnAddSubmit = document.querySelector('.form__button');
 
 const profileAddButton = document.querySelector('.profile__add-button');
 const photoPopupCloseButton = document.querySelector('#close-Btn');
@@ -19,15 +20,7 @@ const captionPopup = document.querySelector('.popup__caption');
 const elementsContain = document.querySelector('.elements__contain');
 const elementCardTemplate = document.querySelector('#elements-card').content;
 const photoCloseButton = document.querySelector('#Close-card');
-/*config = {
-    formSelector: '.form',
-    inputSelector: '.form__item',
-    submitButtonSelector: '.form__button',
-    inactiveButtonClass: 'form__button_disabled',
-    inputErrorClass: 'form__item_invalid',
-    errorClass: 'form__item-error_visible',
-};
-*/
+
 const buttonLike = event => event.target.classList.toggle('elements__button-like_active');
 const deleteCard = event => event.target.closest('.elements__block').remove();
 
@@ -42,7 +35,6 @@ function openPopupForm(item) {
     addClassOpened(item);//открытие попапа
     formName.value = profileName.textContent;
     formParagraph.value = profileParagraph.textContent;
-
 }
 
 //функция открытия попапа добавления фото
@@ -57,14 +49,13 @@ function openPopupImage(item, image) {
 function addClassOpened(item) {
     item.classList.add('popup_opened');
     item.addEventListener('click', detectClickOverlay);
-
+    disableSubmitButton(btnAddSubmit);
 }
 
 //функция закрытия попапа
 function closePopup(item) {
     item.classList.remove('popup_opened');
     item.removeEventListener('click', detectClickOverlay);
-
 }
 
 //функция закрытия попапа при клике на Overlay(вне попапа)
@@ -142,6 +133,11 @@ window.onload = function () {
         addCard(initialCards[i].link, initialCards[i].name);
     }
 };
+
+function disableSubmitButton(button) {
+    button.classList.add('form__button_disabled');
+    button.setAttribute('disabled', true);
+}
 
 // Обработчики событий
 form.addEventListener('submit', formSubmitHandler);

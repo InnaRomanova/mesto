@@ -8,10 +8,6 @@
     font-size: 14px;
     line-height: 17px;
     margin: 0;
-    padding: 0 0 9px;
+    padding: 0 0 5px;
     color: #000000;
-}
-
-.form__item:last-of-type {
-    margin-top: 29px;
 }
