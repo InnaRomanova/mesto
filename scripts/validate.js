@@ -36,7 +36,7 @@ function toggleButtonState(config, inputList, buttonElement) {
     buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(config.disabledButtonClass);
-    buttonElement.removeAttribute('disabled');
+    buttonElement.removeAttribute('disabled'); form
   }
 }
 

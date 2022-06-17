@@ -7,7 +7,7 @@ const profileName = document.querySelector('.profile__name');
 const profileParagraph = document.querySelector('.profile__paragraph');
 const formName = document.querySelector('#profile__name');
 const formParagraph = document.querySelector('#profile__paragraph');
-const form = document.querySelector('#form');
+const formProfile = document.querySelector('#form');
 const btnAddSubmit = document.querySelector('.form__button');
 
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -49,6 +49,7 @@ function openPopupImage(item, image) {
 function addClassOpened(item) {
     item.classList.add('popup_opened');
     item.addEventListener('click', detectClickOverlay);
+    document.addEventListener('keyup', handlePopupCloseEsc);
     disableSubmitButton(btnAddSubmit);
 }
 
@@ -56,6 +57,7 @@ function addClassOpened(item) {
 function closePopup(item) {
     item.classList.remove('popup_opened');
     item.removeEventListener('click', detectClickOverlay);
+    document.removeEventListener('keyup', handlePopupCloseEsc);
 }
 
 //функция закрытия попапа при клике на Overlay(вне попапа)
@@ -126,12 +128,6 @@ function formPlaceSubmitHandler(evt) {
     closePopup(popupPhoto);
 }
 
-// функция добавления неактивной кнопки _disabled при открытии попапа
-function disableSubmitButton(button) {
-    button.classList.add('form__button_disabled'); // добавляет кнопке класс form__button_disabled
-    button.setAttribute('disabled', true);
-}
-
 // Бизнес логика
 // Создание карточек происходит после загрузки страницы
 window.onload = function () {
@@ -140,12 +136,17 @@ window.onload = function () {
     }
 };
 
+function disableSubmitButton(button) {
+    button.classList.add('form__button_disabled');
+    button.setAttribute('disabled', true);
+}
+
 // Обработчики событий
-form.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', formSubmitHandler);
 profileEditButton.addEventListener('click', () => { openPopupForm(popupProfile) });
 popupCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
 profileAddButton.addEventListener('click', () => openPopupForm(popupPhoto));
 photoPopupCloseButton.addEventListener('click', () => closePopup(popupPhoto));
 formButton.addEventListener('submit', formPlaceSubmitHandler);
 photoCloseButton.addEventListener('click', () => { closePopup(cardsOpenPopup) });
-document.addEventListener('keyup', handlePopupCloseEsc);
+//document.addEventListener('keyup', handlePopupCloseEsc);
