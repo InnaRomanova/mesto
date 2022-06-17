@@ -35,6 +35,7 @@ function openPopupForm(item) {
     addClassOpened(item);//открытие попапа
     formName.value = profileName.textContent;
     formParagraph.value = profileParagraph.textContent;
+    disableSubmitButton(btnAddSubmit);
 }
 
 //функция открытия попапа добавления фото
@@ -50,7 +51,7 @@ function addClassOpened(item) {
     item.classList.add('popup_opened');
     item.addEventListener('click', detectClickOverlay);
     document.addEventListener('keyup', handlePopupCloseEsc);
-    disableSubmitButton(btnAddSubmit);
+    //disableSubmitButton(btnAddSubmit);
 }
 
 //функция закрытия попапа
