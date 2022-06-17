@@ -74,8 +74,8 @@ function detectClickOverlay(evt) {
 function handlePopupCloseEsc(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup);
-        }
+        openedPopup.classList.remove('popup_opened');
+    }
 };
 
 //функция закрытия попапа редактирования профайла
