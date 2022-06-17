@@ -38,8 +38,8 @@ function openPopupForm(item) {
 }
 
 //функция открытия попапа добавления фото
-function openPopupImage(item, image) {
-    addClassOpened(item);
+function openPopupImage(cardsOpenPopup, image) {
+    addClassOpened(cardsOpenPopup);
     imagePopup.src = image.src;
     imagePopup.alt = image.alt;
     captionPopup.textContent = image.alt;
@@ -74,11 +74,9 @@ function detectClickOverlay(evt) {
 function handlePopupCloseEsc(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        if (openedPopup) {
-            openedPopup.classList.remove('popup_opened');
+        closePopup(openedPopup);
         }
-    }
-}
+};
 
 //функция закрытия попапа редактирования профайла
 function formSubmitHandler(evt) {
