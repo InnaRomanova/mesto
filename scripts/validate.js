@@ -32,19 +32,19 @@ function hasInvalidInput(inputList) {
 // Б. Проверка инпутов на валидацию и выставление статуса кнопки
 function toggleButtonState(config, inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
-    disableSubmitButton(buttonElement);
+    disableSubmitButton(buttonElement, config);
   } else {
-    enableSubmitButton(buttonElement);
+    enableSubmitButton(buttonElement, config);
   }
 }
 
 function disableSubmitButton(button) {
-  button.classList.add('form__button_disabled');
+  button.classList.add(config.disabledButtonClass);
   button.setAttribute('disabled', true);
 }
 
 function enableSubmitButton(button) {
-  button.classList.remove('form__button_disabled');
+  button.classList.remove(config.disabledButtonClass);
   button.removeAttribute('disabled');
 }
 
@@ -76,10 +76,4 @@ function enableValidation({ formSelector, ...config }) {
 }
 
 //Первый вызов(Точка входа)
-enableValidation({
-  formSelector: ".form",
-  inputSelector: ".form__item",
-  submitButtonSelector: ".form__button",
-  disabledButtonClass: "form__button_disabled",
-  inputErrorClass: "popup__input_invalid",
-});
+enableValidation(config);

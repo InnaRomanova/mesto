@@ -20,6 +20,13 @@ const captionPopup = document.querySelector('.popup__caption');
 const elementsContain = document.querySelector('.elements__contain');
 const elementCardTemplate = document.querySelector('#elements-card').content;
 const photoCloseButton = document.querySelector('#Close-card');
+const config = {
+    formSelector: ".form",
+    inputSelector: ".form__item",
+    submitButtonSelector: ".form__button",
+    disabledButtonClass: "form__button_disabled",
+    inputErrorClass: "popup__input_invalid",
+}
 
 const buttonLike = event => event.target.classList.toggle('elements__button-like_active');
 const deleteCard = event => event.target.closest('.elements__block').remove();
@@ -122,6 +129,7 @@ function renderCard(card) {
 function formPlaceSubmitHandler(evt) {
     const placeInputLink = document.querySelector('#elements__image').value;
     const placeInputName = document.querySelector('#elements__name').value;
+
     // Действие предотвращающeе обновление страницы
     evt.preventDefault();
     addCard(placeInputLink, placeInputName);
