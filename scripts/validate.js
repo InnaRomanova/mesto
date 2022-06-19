@@ -38,14 +38,14 @@ function toggleButtonState(config, inputList, buttonElement) {
   }
 }
 
-function disableSubmitButton(button) {
-  button.classList.add(config.disabledButtonClass);
-  button.setAttribute('disabled', true);
+function disableSubmitButton(buttonElement, config) {
+  buttonElement.classList.add(config.disabledButtonClass);
+  buttonElement.setAttribute('disabled', true);
 }
 
-function enableSubmitButton(button) {
-  button.classList.remove(config.disabledButtonClass);
-  button.removeAttribute('disabled');
+function enableSubmitButton(buttonElement, config) {
+  buttonElement.classList.remove(config.disabledButtonClass);
+  buttonElement.removeAttribute('disabled');
 }
 
 // 2. Выставляет статус для кнопки(активная/неактивная).

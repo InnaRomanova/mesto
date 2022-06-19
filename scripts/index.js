@@ -20,6 +20,7 @@ const captionPopup = document.querySelector('.popup__caption');
 const elementsContain = document.querySelector('.elements__contain');
 const elementCardTemplate = document.querySelector('#elements-card').content;
 const photoCloseButton = document.querySelector('#Close-card');
+
 const config = {
     formSelector: ".form",
     inputSelector: ".form__item",
@@ -129,12 +130,11 @@ function renderCard(card) {
 function formPlaceSubmitHandler(evt) {
     const placeInputLink = document.querySelector('#elements__image').value;
     const placeInputName = document.querySelector('#elements__name').value;
-
-    // Действие предотвращающeе обновление страницы
+    // Действие предотвращает обновление страницы
     evt.preventDefault();
     addCard(placeInputLink, placeInputName);
     formPhoto.reset();
-    disableSubmitButton(photoAddSubmit);
+    disableSubmitButton(photoAddSubmit, config);
     closePopup(popupPhoto);
 }
 
