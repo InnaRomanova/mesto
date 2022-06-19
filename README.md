@@ -31,8 +31,8 @@
 **Проект**
 
 [Ссылка на готовый проект](https://innaromanova.github.io/mesto/)
-**В данном проекте:**
+**В данном проекте можно:**
 :white_check_mark: редактировать профиль;    
-:white_large_square: добавлять фотографии;
-:white_large_square: удалять фотографии;
-:white_large_square: ставить лайки.
+::white_check_mark: добавлять фотографии;
+::white_check_mark: удалять фотографии;
+::white_check_mark: ставить лайки.
