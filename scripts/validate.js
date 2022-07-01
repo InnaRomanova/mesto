@@ -1,5 +1,5 @@
 // I. Отображает ошибку в span
-function showInputError(config, formElement, inputElement, errorMessage) {
+/*function showInputError(config, formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -77,3 +77,4 @@ function enableValidation({ formSelector, ...config }) {
 
 //Первый вызов(Точка входа)
 enableValidation(config);
+*/

@@ -1,3 +1,7 @@
+import { initialCards } from './cards';
+import Card from './Card';
+import { FormValidator } from './FormValidator';
+
 //Переменные и константы
 const popupProfile = document.querySelector('#popup-profile');
 const popupPhoto = document.querySelector('.popup-photo');
