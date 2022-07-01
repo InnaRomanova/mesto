@@ -1,86 +1,80 @@
-export class FormValidator {
-  constructor(config, formElement) {
-    this.formElement = formElement;
-    this.inputSelector = config.inputSelector;
-    this.submitButtonSelector = config.submitButtonSelector;
-    this.disabledButtonClass = config.disabledButtonClass;
-    this.inputErrorClass = config.inputElement;
-  }
-
-
-  _showInputError(config, formElement, inputElement, errorMessage) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.add(config.inputErrorClass);
-    errorElement.textContent = errorMessage;
-  }
-
-  // II. Скрывает ошибку в span
-  _hideInputError(config, formElement, inputElement) {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove(config.inputErrorClass);
-    errorElement.textContent = "";
-  }
-
-  // А. Проверяет инпут на валидацию в параметрах тега.
-  // Вызов функции от условия I. showInputError II. hideInputError
-  _checkingValidity(config, formElement, inputElement) {
-    if (!inputElement.validity.valid) {
-      this._showInputError(config, formElement, inputElement, inputElement.validationMessage);
-    } else {
-      this._hideInputError(config, formElement, inputElement);
+export default class FormValidator {
+    constructor(config, formElement) {
+        this.formElement = formElement;
+        this.inputSelector = config.inputSelector;
+        this.submitButtonSelector = config.submitButtonSelector;
+        this.disabledButtonClass = config.disabledButtonClass;
+        this.inputErrorClass = config.inputErrorClass;
     }
-  }
-
-  // Функция проверки валидации инпутов формы
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    });
-  }
-
-  // Б. Проверка инпутов на валидацию и выставление статуса кнопки
-  _toggleButtonState(config, inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
-      this._disableSubmitButton(buttonElement, config);
-    } else {
-      this._enableSubmitButton(buttonElement, config);
+    // II Отображает ошибка в span
+    _showInputError(inputElement, errorMessage) {
+        inputElement.classList.add(this.inputErrorClass);
+        errorMessage.textContent = inputElement.validationMessage;
+        errorMessage.classList.add(this.inputErrorClass);
     }
-  }
 
-  _disableSubmitButton(buttonElement, config) {
-    buttonElement.classList.add(config.disabledButtonClass);
-    buttonElement.setAttribute('disabled', true);
-  }
+    // II. Скрывает ошибку в span
+    _hideInputError(inputElement, errorMessage) {
+        inputElement.classList.remove(this.disabledButtonClass);
+        errorMessage.textContent = '';
+        errorMessage.classList.remove(this.inputErrorClass);
+    }
 
-  _enableSubmitButton(buttonElement, config) {
-    buttonElement.classList.remove(config.disabledButtonClass);
-    buttonElement.removeAttribute('disabled');
-  }
+    // А. Проверяет инпут на валидацию в параметрах тега.
+    // Вызов функции от условия I. showInputError II. hideInputError
+    _checkingValidity(inputElement, errorMessage) {
+        if (!inputElement.validity.valid) {
+            this._showInputError(inputElement, errorMessage);
+        } else {
+            this._hideInputError(inputElement, errorMessage);
+        }
+    }
 
-  // 2. Выставляет статус для кнопки(активная/неактивная).
-  // Каждому инпуту дает указание на нажатие клавиш А. checkingValidity Б. toggleButtonState
-  _setEventListeners(config, formElement) {
-    const inputList = Array.from(
-      this._formElement.querySelectorAll(config.inputSelector)
-    );
-    const buttonElement = this._formElement.querySelector(config.submitButtonSelector);
-    this._toggleButtonState(config, inputList, buttonElement);
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._checkingValidity(config, formElement, inputElement);
-        this._toggleButtonState(config, inputList, buttonElement);
-      });
-    });
-  }
+    // Функция проверки валидации инпутов формы
+    _hasInvalidInput(inputList) {
+        return inputList.some((inputElement) => {
+            return !inputElement.validity.valid;
+        });
+    }
 
-  //1. Для каждой формы: отключает поведения submit у кнопок и вызываем функцию 2. setEventListeners
-  enableValidation({ formSelector, ...config }) {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
-    formList.forEach((formElement) => {
-      formElement.addEventListener("submit", (evt) => {
-        evt.preventDefault();
-      });
-      this._setEventListeners(config, formElement);
-    });
-  }
+    // Б. Проверка инпутов на валидацию и выставление статуса кнопки
+    _toggleButtonState(inputList, buttonElement) {
+        if (this._hasInvalidInput(inputList)) {
+            this._disableSubmitButton(buttonElement);
+        } else {
+            this._enableSubmitButton(buttonElement);
+        }
+    }
+
+    _disableSubmitButton(buttonElement) {
+        buttonElement.classList.add(this.disabledButtonClass);
+        buttonElement.setAttribute('disabled', true);
+    }
+
+    _enableSubmitButton(buttonElement) {
+        buttonElement.classList.remove(this.disabledButtonClass);
+        buttonElement.removeAttribute('disabled');
+    }
+
+    // 2. Выставляет статус для кнопки(активная/неактивная).
+    // Каждому инпуту дает указание на нажатие клавиш А. checkingValidity Б. toggleButtonState
+    _setEventListeners() {
+        const inputList = Array.from(
+            this.formElement.querySelectorAll(this.inputSelector));
+        const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
+        this._toggleButtonState(inputList, buttonElement);
+        inputList.forEach((inputElement) => {
+            inputElement.addEventListener("input", () => {
+                const errorMessage = this.formElement.querySelector(`#${inputElement.name}-error`);
+                this._checkingValidity(inputElement, errorMessage);
+                this._toggleButtonState(inputList, buttonElement);
+            });
+        });
+    }
+
+    //1. Для каждой формы: отключает поведения submit у кнопок и вызывает функцию 2. setEventListeners
+    enableValidation() {
+        this.formElement.addEventListener('submit', evt => evt.preventDefault());
+        this._setEventListeners();
+    }
 }

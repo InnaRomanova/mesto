@@ -1,6 +1,6 @@
-import { initialCards } from './cards';
-import Card from './Card';
-import { FormValidator } from './FormValidator';
+import { initialCards } from './cards.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 //Переменные и константы
 const popupProfile = document.querySelector('#popup-profile');
@@ -18,11 +18,7 @@ const photoAddSubmit = document.querySelector('#form__button__photo');
 const profileAddButton = document.querySelector('.profile__add-button');
 const photoPopupCloseButton = document.querySelector('#close-Btn');
 const cardsOpenPopup = document.querySelector('.popup_open-card');
-const imagePopup = document.querySelector('.popup__image');
-const captionPopup = document.querySelector('.popup__caption');
-
 const elementsContain = document.querySelector('.elements__contain');
-const elementCardTemplate = document.querySelector('#elements-card').content;
 const photoCloseButton = document.querySelector('#Close-card');
 
 const config = {
@@ -33,14 +29,7 @@ const config = {
     inputErrorClass: "popup__input_invalid",
 }
 
-const buttonLike = event => event.target.classList.toggle('elements__button-like_active');
-const deleteCard = event => event.target.closest('.elements__block').remove();
-
 // Функции
-
-/*
-Функция openPopup разбита на две openPopupForm и openPopupImage
-*/
 
 //функция открытия попапа редактирования профайла
 function openPopupProfile(item) {
@@ -52,14 +41,6 @@ function openPopupProfile(item) {
 function openPopupPhoto(item) {
     // возможно добавление действия очистки полей перед открытием
     addClassOpened(item);//открытие попапа
-}
-
-//функция открытия попапа добавления фото
-function openPopupImage(image) {
-    addClassOpened(cardsOpenPopup);
-    imagePopup.src = image.src;
-    imagePopup.alt = image.alt;
-    captionPopup.textContent = image.alt;
 }
 
 //функция открытия попапа
@@ -102,43 +83,25 @@ function formSubmitHandler(evt) {
     closePopup(popupProfile);
 }
 
-/*
-Функция добавления карточки разделена на две функции createCard return card и renderCard
- */
-function addCard(link, name) {
-    const card = createCard(link, name); // Создает по шаблону карточку
-    renderCard(card); // Добавляет в начало элемента elementsContain созданую карточку
+function createCard(addCard) {
+    return (new Card(addCard, '#elements-card').generateCard());
 }
 
-function createCard(link, name) {
-    const card = elementCardTemplate.querySelector('.elements__block').cloneNode(true);
-    const cardImage = card.querySelector('.elements__image');
-    const cardName = card.querySelector('.elements__name');
-    cardImage.src = link;
-    cardImage.alt = name;
-    cardName.textContent = name;
-    cardImage.addEventListener('click', card);
-
-    card.querySelector('.elements__button-like').addEventListener('click', buttonLike);
-    card.querySelector('.elements__button-delete').addEventListener('click', deleteCard);
-    card.querySelector('.photo__open-button').addEventListener('click', () => openPopupImage(cardImage));
-    // Добавлен обработчик событий для картинки. При клике на картинку вызывается функция openPopupImage и открывает popup с картинкой
-    return card;
-}
-
-function renderCard(card) {
-    elementsContain.prepend(card);
-}
+// const disableSubmitButton = buttonElement => buttonElement.setAttribute('disabled', true);
 
 // Добавление картинки
 function formPlaceSubmitHandler(evt) {
-    const placeInputLink = document.querySelector('#elements__image').value;
-    const placeInputName = document.querySelector('#elements__name').value;
+    const data = {
+        name: document.querySelector('#elements__name').value,
+        link: document.querySelector('#elements__image').value,
+    }
     // Действие предотвращает обновление страницы
     evt.preventDefault();
-    addCard(placeInputLink, placeInputName);
+    let card = new Card(data, '#elements-card');
+    elementsContain.prepend(card.generateCard());
     formPhoto.reset();
-    disableSubmitButton(photoAddSubmit, config);
+    evt.target.querySelector('.form__button').setAttribute('disabled','')
+    // disableSubmitButton(photoAddSubmit);
     closePopup(popupPhoto);
 }
 
@@ -146,9 +109,11 @@ function formPlaceSubmitHandler(evt) {
 // Создание карточек происходит после загрузки страницы
 window.onload = function () {
     for (let i = 0; i < initialCards.length; i++) {
-        addCard(initialCards[i].link, initialCards[i].name);
+        let card = new Card(initialCards[i], '#elements-card');
+        elementsContain.prepend(card.generateCard());
     }
 };
+
 
 // Обработчики событий
 formProfile.addEventListener('submit', formSubmitHandler);
@@ -158,3 +123,10 @@ popupCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
 profileAddButton.addEventListener('click', () => openPopupPhoto(popupPhoto));
 photoPopupCloseButton.addEventListener('click', () => closePopup(popupPhoto));
 photoCloseButton.addEventListener('click', () => { closePopup(cardsOpenPopup) });
+
+document.querySelectorAll('.form').forEach(form => {
+    const validator = new FormValidator(config, form);
+    validator.enableValidation();
+});
+
+export { addClassOpened }
