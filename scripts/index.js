@@ -87,8 +87,6 @@ function createCard(addCard) {
     return (new Card(addCard, '#elements-card').generateCard());
 }
 
-// const disableSubmitButton = buttonElement => buttonElement.setAttribute('disabled', true);
-
 // Добавление картинки
 function formPlaceSubmitHandler(evt) {
     const data = {
@@ -100,8 +98,7 @@ function formPlaceSubmitHandler(evt) {
     let card = new Card(data, '#elements-card');
     elementsContain.prepend(card.generateCard());
     formPhoto.reset();
-    evt.target.querySelector('.form__button').setAttribute('disabled','')
-    // disableSubmitButton(photoAddSubmit);
+    evt.target.querySelector('.form__button').setAttribute('disabled', '')
     closePopup(popupPhoto);
 }
 
@@ -123,6 +120,7 @@ popupCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
 profileAddButton.addEventListener('click', () => openPopupPhoto(popupPhoto));
 photoPopupCloseButton.addEventListener('click', () => closePopup(popupPhoto));
 photoCloseButton.addEventListener('click', () => { closePopup(cardsOpenPopup) });
+
 
 document.querySelectorAll('.form').forEach(form => {
     const validator = new FormValidator(config, form);
