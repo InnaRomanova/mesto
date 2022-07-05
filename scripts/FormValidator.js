@@ -71,6 +71,7 @@ export default class FormValidator {
     // 2. Выставляет статус для кнопки(активная/неактивная).
     // Каждому инпуту дает указание на нажатие клавиш А. checkingValidity Б. toggleButtonState
     _setEventListeners() {
+        this._toggleButtonState();
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener("input", () => {
                 this._checkingValidity(inputElement);
