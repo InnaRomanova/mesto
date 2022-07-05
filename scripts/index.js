@@ -30,37 +30,32 @@ const config = {
     inputErrorClass: "popup__input_invalid",
 }
 
+const validator = new FormValidator(config, formProfile);
+validator.enableValidation();
+const myForm = new FormValidator(config, formPhoto);
+myForm.enableValidation();
+
 // Функции
 
 closeButtons.forEach((button) => {
-    // находим 1 раз ближайший к крестику попап
-    const popup = button.closest('.popup');
-    // устанавливаем обработчик закрытия на крестик
-    button.addEventListener('click', () => closePopup(popup));
+    const popup = button.closest('.popup');// находим 1 раз ближайший к крестику попап
+    button.addEventListener('click', () => closePopup(popup));  // устанавливаем обработчик закрытия на крестик
 });
 
 //функция открытия попапа редактирования профайла
 function openPopupProfile() {
-    addClassOpened(popupProfile);//открытие попапа
-    openPopup(popupProfile);
+
+    openPopup(popupProfile);//открытие попапа
     formName.value = profileName.textContent;
     formParagraph.value = profileParagraph.textContent;
 }
 
 function openPopupPhoto() {
-    // возможно добавление действия очистки полей перед открытием
-    let myForm = new FormValidator(config, formPhoto);
-    myForm._resetValidation();
-    addClassOpened(popupPhoto);//открытие попапа
-    openPopup(popupPhoto);
-}
-
-//функция открытия попапа
-function addClassOpened(item) {
-    item.classList.add('popup_opened');
+    openPopup(popupPhoto);//открытие попапа
 }
 
 function openPopup(item) {
+    item.classList.add('popup_opened');
     item.addEventListener('mousedown', detectClickOverlay);
     document.addEventListener('keyup', handlePopupCloseEsc);
 }
@@ -105,7 +100,6 @@ function handleCardClick(name, link) {
     imagePopup.src = link; //устанавливаем ссылку
     imagePopup.alt = name; //устанавливаем подпись картинке
     captionPopup.textContent = name;
-    addClassOpened(cardsOpenPopup);//открываем попап  функцией открытия попапа
     openPopup(cardsOpenPopup); //универсальная функция закрытия картинки при помощи оверелй и Esc
 }
 
@@ -118,6 +112,7 @@ function handlePlaceFormSubmit(evt) {
     // Действие предотвращает обновление страницы
     evt.preventDefault();
     elementsContain.prepend(createCard(data));
+    myForm.disableSubmitButton();
     closePopup(popupPhoto);
     formPhoto.reset();
 }
@@ -138,9 +133,3 @@ profileEditButton.addEventListener('click', () => {
     openPopupProfile(popupProfile)
 });
 profileAddButton.addEventListener('click', () => openPopupPhoto());
-
-//Валидация
-document.querySelectorAll('.form').forEach(form => {
-    const validator = new FormValidator(config, form);
-    validator.enableValidation();
-});

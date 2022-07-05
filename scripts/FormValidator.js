@@ -52,13 +52,13 @@ export default class FormValidator {
     // Б. Проверка инпутов на валидацию и выставление статуса кнопки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._disableSubmitButton();
+            this.disableSubmitButton();
         } else {
             this._enableSubmitButton();
         }
     }
 
-    _disableSubmitButton() {
+    disableSubmitButton() {
         this._buttonElement.classList.add(this._disabledButtonClass);
         this._buttonElement.setAttribute('disabled', true);
     }
