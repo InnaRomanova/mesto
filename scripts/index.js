@@ -30,10 +30,10 @@ const config = {
     inputErrorClass: "popup__input_invalid",
 }
 
-const validator = new FormValidator(config, formProfile);
-validator.enableValidation();
-const myForm = new FormValidator(config, formPhoto);
-myForm.enableValidation();
+const profileValidator = new FormValidator(config, formProfile);
+profileValidator.enableValidation();
+const cardFormValidator = new FormValidator(config, formPhoto);
+cardFormValidator.enableValidation();
 
 // Функции
 
@@ -44,10 +44,10 @@ closeButtons.forEach((button) => {
 
 //функция открытия попапа редактирования профайла
 function openPopupProfile() {
-
     openPopup(popupProfile);//открытие попапа
     formName.value = profileName.textContent;
     formParagraph.value = profileParagraph.textContent;
+    profileValidator.resetValidation();
 }
 
 function openPopupPhoto() {
@@ -112,7 +112,7 @@ function handlePlaceFormSubmit(evt) {
     // Действие предотвращает обновление страницы
     evt.preventDefault();
     elementsContain.prepend(createCard(data));
-    myForm.disableSubmitButton();
+    cardFormValidator.disableSubmitButton();
     closePopup(popupPhoto);
     formPhoto.reset();
 }
