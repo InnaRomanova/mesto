@@ -1,5 +1,5 @@
 export default class FormValidator {
-    constructor(config, formElement) {
+    constructor(formElement, config) {
         this._formElement = formElement;
         this._inputSelector = config.inputSelector;
         this._submitButtonSelector = config.submitButtonSelector;
@@ -10,7 +10,7 @@ export default class FormValidator {
     }
     // II Отображает ошибка в span
     _showInputError(inputElement) {
-        const errorMessage = this._formElement.querySelector(`#${inputElement.name}-error`);
+        const errorMessage = this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.add(this._inputErrorClass);
         errorMessage.textContent = inputElement.validationMessage;
         errorMessage.classList.add(this._inputErrorClass);
@@ -18,7 +18,7 @@ export default class FormValidator {
 
     // II. Скрывает ошибку в span
     _hideInputError(inputElement) {
-        const errorMessage = this._formElement.querySelector(`#${inputElement.name}-error`);
+        const errorMessage = this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(this._disabledButtonClass);
         errorMessage.textContent = '';
         errorMessage.classList.remove(this._inputErrorClass);

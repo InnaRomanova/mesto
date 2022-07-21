@@ -6,24 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
+   
 </head>
 
 <body class="page">
     <div class="page__wrapper">
         <!-- блок header -->
         <header class="header">
-            <img class="header__logo" src="./images/logo-1.svg" alt="логотип">
+            <img class="header__logo" src="<%=require('./images/logo-1.svg')%>" alt="логотип">
         </header>
         <main class="content">
 
             <!-- секция profile -->
             <section class="profile">
-                <img class="profile__image profile__image_avatar" src="./images/image.jpg" alt="аватар">
+                <img class="profile__image profile__image_avatar" src="<%=require('./images/фото.jpeg')%>" alt="аватар">
                 <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name">Девушка</h1>
                     <button class="profile__edit-button" type="button" title="Редактировать"></button>
-                    <p class="profile__paragraph">Исследователь океана</p>
+                    <p class="profile__paragraph">Фотомодель</p>
                 </div>
                 <button class="profile__add-button" type="button" title="Добавить фотографию"></button>
             </section>
@@ -46,13 +46,13 @@
                 <fieldset class="form__user" id="profile__fields">
 
                     <input class="form__item" type="text" id="profile__name" name="profile__name"
-                        placeholder="Введите ваше имя" autocomplete="off" value="Жак-Ив Кусто" minlength="2"
+                        placeholder="Введите ваше имя" autocomplete="off" value="Девушка" minlength="2"
                         maxlength="40" required>
                     <span class="form__item-error" id="profile__name-error"></span>
 
                     <input class="form__item" type="text" id="profile__paragraph" name="profile__paragraph"
                         placeholder="Ваша профессия" minlength="2" maxlength="200" autocomplete="off"
-                        value="Исследователь океана" required>
+                        value="Фотомодель" required>
                     <span class="form__item-error" id="profile__paragraph-error"></span>
 
                 </fieldset>
@@ -69,11 +69,11 @@
                 <h2 class="form__title">Новое место</h2>
                 <fieldset class="form__user">
 
-                    <input class="form__item" type="text" id="elements__name" name="elements__name"
+                    <input class="form__item" type="text" id="elements__name" name="name"
                         placeholder="Название" minlength="2" maxlength="30" required>
                     <span class="form__item-error" id="elements__name-error"></span>
 
-                    <input class="form__item" type="url" id="elements__image" name="elements__image"
+                    <input class="form__item" type="url" id="elements__image" name="link"
                         placeholder="Ссылка на картинку" required>
 
                     <span class="form__item-error" id="elements__image-error"></span>
@@ -105,7 +105,7 @@
             </div>
         </li>
     </template>
-    <script type="module" src="./pages/index.js"></script>
+    
 </body>
 
 </html>
