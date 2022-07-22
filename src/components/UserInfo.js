@@ -7,12 +7,12 @@ export default class UserInfo {
     getUserInfo() {
         return {
             name: this._nameField.textContent,
-            about: this._paragraphField.textContent,
+            paragraph: this._paragraphField.textContent,
         };
     }
 
-    setUserInfo({ profile__name, profile__paragraph }) {
-        this._nameField.textContent = profile__name;
-        this._paragraphField.textContent = profile__paragraph;
+    setUserInfo({ name, paragraph }) {
+        this._nameField.textContent = name;
+        this._paragraphField.textContent = paragraph;
     }
 }
