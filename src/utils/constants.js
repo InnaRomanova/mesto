@@ -41,6 +41,7 @@ export const selectors = {
     closeButtons: '.popup__close-button',
     popupProfile: '#popup-profile',
     profileEditButton: '.profile__edit-button',
+    profileAvatar: '.profile__image_avatar',
     formName: '.profile__name',
     formParagraph: '.profile__paragraph',
     popupPhoto: '.popup-photo',

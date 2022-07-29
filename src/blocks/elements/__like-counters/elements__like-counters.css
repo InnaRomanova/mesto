@@ -1,0 +1,13 @@
+.elements__like-counters {
+    width: 10px;
+    height: 13px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #000000;
+    margin: 0;
+    margin-top: 3px;
+    text-align: center;
+}

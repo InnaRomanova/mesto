@@ -6,12 +6,22 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api';
 
 import {
     initialCards,
     validationSettings,
     selectors,
 } from '../utils/constants.js'
+
+//авторизация Api
+const api = new Api({
+    url: 'https://nomoreparties.co/v1/cohort-47',
+    headers: {
+        authorization: '6317d273-77cd-40e4-acd5-6cbb113af6b1',
+        'Content-Type': 'application/json'
+    }
+});
 
 
 const formValidators = {};
@@ -97,3 +107,15 @@ cardAddButton.addEventListener('click', () => {
     formValidators['addPhoto'].resetValidation();
     popupNewCard.open();
 });
+
+// Id пользователя
+let userId
+
+//возвращает результат необходимых промисов(карточки и инф. польз.)
+api.getAllNeedData()
+    .then(([cards, userData]) => {
+        profile.setUserInfo(userData)
+        userId = userData._id
+        cardList.render(cards)
+    })
+    .catch((err) => console.log(err))
