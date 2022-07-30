@@ -16,7 +16,7 @@ import {
 
 //авторизация Api
 const api = new Api({
-    url: 'https://nomoreparties.co/v1/cohort-47',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-47',
     headers: {
         authorization: '6317d273-77cd-40e4-acd5-6cbb113af6b1',
         'Content-Type': 'application/json'
@@ -67,19 +67,40 @@ const handleCardClick = (name, link) => {
     imagePopup.open(name, link);
 };
 
+const handleLikeButton = (card) => {
+    console.log(card);
+    if (card.isLiked) {
+        api.deleteCardLike(card.getCardId()).then((cardData) => {
+            card.unsetLike();
+            card.updateLikeCounter(cardData.likes);
+        }).catch((err) => {
+            console.error(err);
+        });
+    } else {
+        api.addCardLike(card.getCardId()).then((cardData) => {
+            card.setLike();
+            card.updateLikeCounter(cardData.likes);
+        }).catch((err) => {
+            console.error(err);
+        });
+    }
+}
+
 function createCard(addCard) {
-    const card = new Card(addCard, '#elements-card', handleCardClick);
+    const card = new Card(
+        addCard,
+        profile.getUserId(),
+        '#elements-card',
+        handleCardClick);
+    card.handleLikeButton = handleLikeButton(card);
     return card.generateCard();
 }
 
-const addCard = (cardData) => cardList.addItem(createCard(cardData));
+const addCard = (cardData) => createCard(cardData);
 
 const cardList = new Section({
-    items: initialCards,
     renderer: addCard,
 }, selectors.elementsContain);
-
-cardList.renderItems();
 
 const cardAddButton = document.querySelector(selectors.profileAddButton);
 
@@ -108,14 +129,10 @@ cardAddButton.addEventListener('click', () => {
     popupNewCard.open();
 });
 
-// Id пользователя
-let userId
-
 //возвращает результат необходимых промисов(карточки и инф. польз.)
 api.getAllNeedData()
     .then(([cards, userData]) => {
         profile.setUserInfo(userData)
-        userId = userData._id
-        cardList.render(cards)
+        cardList.renderItems(cards)
     })
     .catch((err) => console.log(err))

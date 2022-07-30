@@ -1,20 +1,83 @@
 export default class Api {
-    constructor(options) {
-      this._url = options.url;
-      this._headers = options.headers;
+    constructor({url, headers}) {
+        this._headers = headers;
+        this._url = url;
     }
-  
+
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject(`${res.status} ${res.statusText}`);
+        }
+    }
+
+    getUserInfo() {
+        const requestUrl = this._url + `/users/me`;
+        return fetch(requestUrl, {
+            headers: this._headers,
+        }).then(this._checkResponse);
+    }
+
     getInitialCards() {
-      // ...
+        const requestUrl = this._url + '/cards';
+        return fetch(requestUrl, {
+            headers: this._headers,
+        }).then(this._checkResponse);
     }
-  
-    // другие методы работы с API
-  }
-  
-  const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
-    headers: {
-      authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
-      'Content-Type': 'application/json'
+
+    getAllNeedData() {
+        return Promise.all([this.getInitialCards(), this.getUserInfo()]);
     }
-  });
+
+    updateUserInfo(body) {
+        const requestUrl = this._url + `/users/me`;
+        return fetch(requestUrl, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify(body),
+        }).then(this._checkResponse);
+    }
+
+    addNewCard(body) {
+        const requestUrl = this._url + '/cards';
+        return fetch(requestUrl, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify(body),
+        }).then(this._checkResponse);
+    }
+
+    removeCard(cardId) {
+        const requestUrl = this._url + `/cards/${cardId}`;
+        return fetch(requestUrl, {
+            method: 'DELETE',
+            headers: this._headers,
+        }).then(this._checkResponse);
+    }
+
+    addCardLike(cardId) {
+        const requestUrl = this._url + `/cards/likes/${cardId}`;
+        return fetch(requestUrl, {
+            method: 'PUT',
+            headers: this._headers,
+        }).then(this._checkResponse);
+    }
+
+    deleteCardLike(cardId) {
+        const requestUrl = this._url + `/cards/likes/${cardId}`;
+        return fetch(requestUrl, {
+            method: 'DELETE',
+            headers: this._headers,
+        }).then(this._checkResponse);
+    }
+
+    updateProfileAvatar(body) {
+        const requestUrl = this._url + `/users/me/avatar`;
+        return fetch(requestUrl, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify(body),
+        }).then(this._checkResponse);
+    }
+}

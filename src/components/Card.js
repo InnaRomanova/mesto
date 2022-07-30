@@ -1,10 +1,12 @@
 export default class Card {
-    constructor(data, templateSelector, handleCardClick) {
+    constructor(data, userId, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
+        this._likes = data.likes;
         this._cardId = data._id;
+        this._UserId = userId;
     }
 
     //получение карточки
@@ -21,10 +23,11 @@ export default class Card {
         this._cardName = this._element.querySelector('.elements__name');
         this._cardLike = this._element.querySelector('.elements__button-like');
         this._cardDelete = this._element.querySelector('.elements__button-delete');
-        this._LikesCounter = this._element.querySelector('.elements__button-like');
-        this._LikesCounter.textContent = this._likes.lenght;
+        this._LikesCounter = this._element.querySelector('.elements__like-counters');
+        this._LikesCounter.textContent = this._likes.length;
 
         this._setEventListers();
+        this._toggleLike();
 
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
@@ -36,7 +39,7 @@ export default class Card {
     //Слушатели событий
     _setEventListers() {
         this._cardLike.addEventListener('click', () => {
-            this._toggleLike();
+            this._handleLikeButton();
         })
 
         this._cardDelete.addEventListener('click', () => {
@@ -52,9 +55,9 @@ export default class Card {
         if (this._chekUserLike()) {
             this.setLike();
         } else {
-            this.insetLike();
+            this.unsetLike();
         }
-        // this._cardLike.classList.toggle('elements__button-like_active');
+        //this._cardLike.classList.toggle('elements__button-like_active');
     }
 
     _chekUserLike() {
@@ -66,13 +69,13 @@ export default class Card {
         this.isLiked = true;
     }
 
-    insetLike() {
+    unsetLike() {
         this._cardLike.classList.remove('elements__button-like_active');
         this.isLiked = false;
     }
 
     updateLikeCounter(data) {
-        this._LikesCounter.textContent = data.lenght;
+        this._LikesCounter.textContent = data.length;
     }
 
     getCardId() {
