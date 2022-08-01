@@ -19,14 +19,14 @@
 
             <!-- секция profile -->
             <section class="profile">
-                <button class="profile__avatar-edit-button" type="button" title="Обновить аватар">
-                    <img class="profile__image profile__image_avatar" src="<%=require('./images/фото.jpeg')%>"
+                <button class="profile__avatar-edit-button" type="button">
+                    <img class="profile__image profile__image_avatar" src="<%=require('./images/ava.gif')%>"
                         alt="аватар">
                 </button>
                 <div class="profile__info">
-                    <h1 class="profile__name">Девушка</h1>
+                    <h1 class="profile__name"></h1>
                     <button class="profile__edit-button" type="button" title="Редактировать"></button>
-                    <p class="profile__paragraph">Фотомодель</p>
+                    <p class="profile__about"></p>
                 </div>
                 <button class="profile__add-button" type="button" title="Добавить фотографию"></button>
             </section>
@@ -49,13 +49,13 @@
                 <fieldset class="form__user" id="profile__fields">
 
                     <input class="form__item" type="text" id="profile__name" name="name" placeholder="Введите ваше имя"
-                        autocomplete="off" value="Девушка" minlength="2" maxlength="40" required>
+                        autocomplete="off" value="" minlength="2" maxlength="40" required>
                     <span class="form__item-error" id="profile__name-error"></span>
 
-                    <input class="form__item" type="text" id="profile__paragraph" name="about"
-                        placeholder="Ваша профессия" minlength="2" maxlength="200" autocomplete="off" value="Фотомодель"
+                    <input class="form__item" type="text" id="profile__about" name="about"
+                        placeholder="Ваша профессия" minlength="2" maxlength="200" autocomplete="off" value=""
                         required>
-                    <span class="form__item-error" id="profile__paragraph-error"></span>
+                    <span class="form__item-error" id="profile__about-error"></span>
 
                 </fieldset>
                 <button class="form__button" id="form__button__profile" type="submit" name="profile__save"
@@ -71,10 +71,11 @@
             <form class="form" id="form-avatar" name="avatar" method="post" novalidate>
                 <h2 class="form__title">Обновить аватар</h2>
                 <fieldset class="form__user" id="avatar__fields">
-                    <input class="form__item" id="avatar__image" type="url" placeholder="Ссылка на картинку" required>
-                    <span class="form__item-error" id="avatar__name-error"></span>
+                    <input class="form__item" id="avatar__image" name="url" type="url" placeholder="Ссылка на картинку" required>
+                    <span class="form__item-error" id="avatar__image-error"></span>
                 </fieldset>
-                <button class="form__button" id="form__button__avatar" type="submit" name="avatar__save"></button>
+                <button class="form__button" id="form__button__avatar" type="submit" name="avatar__save"
+                        value="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
@@ -104,15 +105,16 @@
     </div>
 
 <!-- popup удаления карточек popup__delete-photo-->
-    <!-- <div class="popup popup__delete-photo">
+    <div class="popup popup__delete-photo">
         <div class="popup__container">
-            <button class="popup__close-button" id="close-delete" type="button"></button>
-            <form class="form" name="deletePhoto" novalidate>
+            <button class="popup__close-button" id="delete-close-button" type="button"></button>
+            <form class="form"id="form-delete-photo"  name="delete-photo" method="post" novalidate>
                 <h2 class="form__title">Вы уверены?</h2>
-                <button class="form__title" type="submit">Да</button>
+                <button class="form__button" id="form__button__delete" type="submit" name="delete__save"
+                        value="Да">Да</button>
             </form>
         </div>
-    </div> -->
+    </div>
 
     <!-- попап Open-card -->
     <div class="popup popup_open-card">

@@ -39,4 +39,7 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
+  updateSubmitHandler(action) {
+    this._handleSubmit = action;
+  }
 }

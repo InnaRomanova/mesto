@@ -43,12 +43,16 @@ export const selectors = {
     profileEditButton: '.profile__edit-button',
     profileAvatar: '.profile__image_avatar',
     formName: '.profile__name',
-    formParagraph: '.profile__paragraph',
+    formAbout: '.profile__about',
     popupPhoto: '.popup-photo',
     profileAddButton: '.profile__add-button',
     elementsContain: '.elements__contain',
     cardsOpenPopup: '.popup_open-card',
     imagePopup: '.popup__image',
     captionPopup: '.popup__caption',
-    openedPopupClass: 'popup_opened'
+    openedPopupClass: 'popup_opened',
+    popupEditAvatar: '.popup__avatar-edit',
+    avatarEditButton: '.profile__avatar-edit-button',
+    popupConfirmationSelector: '.popup__delete-photo',
+
 };

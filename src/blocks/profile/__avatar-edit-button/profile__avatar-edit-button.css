@@ -25,6 +25,7 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: opacity .3s ease-in-out;
+    cursor: pointer;
 }
 
 .profile__avatar-edit-button:hover::after {

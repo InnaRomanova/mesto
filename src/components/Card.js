@@ -1,12 +1,15 @@
 export default class Card {
-    constructor(data, userId, templateSelector, handleCardClick) {
+    constructor({data, userId, templateSelector,handleLikeButton, handleCardClick, handleRemoveButton}) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
+        this._handleLikeButton = handleLikeButton;
+        this._handleRemoveButton = handleRemoveButton;
         this._likes = data.likes;
         this._cardId = data._id;
         this._UserId = userId;
+        this._isUserCard = userId === data.owner._id;
     }
 
     //получение карточки
@@ -42,13 +45,18 @@ export default class Card {
             this._handleLikeButton();
         })
 
-        this._cardDelete.addEventListener('click', () => {
-            this._deleteCard();
-        })
-
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link);
         })
+
+        if (!this._isUserCard) {
+            this._cardDelete.remove();
+            this._cardDelete = null;
+        } else {
+            this._element.querySelector('.elements__button-delete').addEventListener('click', (event) => {
+                this._handleRemoveButton(event);
+            });
+        }
     }
 
     _toggleLike() {
@@ -57,7 +65,6 @@ export default class Card {
         } else {
             this.unsetLike();
         }
-        //this._cardLike.classList.toggle('elements__button-like_active');
     }
 
     _chekUserLike() {
@@ -81,8 +88,4 @@ export default class Card {
     getCardId() {
         return this._cardId
     }
-
-    //  _deleteCard() {
-    //     this._element.remove();
-    // }
 }
