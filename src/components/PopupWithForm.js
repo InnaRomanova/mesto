@@ -5,13 +5,14 @@ export default class PopupWithForm extends Popup {
     super(config);
     this._handleSubmit = submitHandler;
     this._form = this._popupElement.querySelector(config.formSelector);
-    this._inputList = this._form.querySelectorAll(config.inputSelector) 
+    this._inputList = this._form.querySelectorAll(config.inputSelector);
+    this._buttonElement = config.submitButtonSelector;
   }
 
   _getInputValues() {
     const values = {};
     this._inputList.forEach(input => values[input.name] = input.value);
-    
+
     return values;
   }
 
@@ -41,5 +42,14 @@ export default class PopupWithForm extends Popup {
 
   updateSubmitHandler(action) {
     this._handleSubmit = action;
+  }
+
+  //Уведомляет пользователя, что идет процесс загрузки, обмена с сервером
+  renderLoading(isLoading) {
+    if (isLoading === true) {
+      this._buttonElement.textContent = 'Сохранение ...';
+    } else {
+      this._buttonElement.textContent = 'Сохранить';
+    }
   }
 }
