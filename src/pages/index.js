@@ -44,7 +44,14 @@ const profile = new UserInfo(selectors);
 const handleProfileFormSubmit = (inputsValues) => {
     api.updateUserInfo(inputsValues).then((data) => {
         profile.setUserInfo(data)
-    });
+        popupProfile.close()
+    })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(() => {
+            popupProfile.renderLoading(false)
+        })
 };
 
 const popupProfile = new PopupWithForm({
@@ -121,7 +128,15 @@ const editAvatarPopup = document.querySelector(selectors.avatarEditButton);
 const sendNewCard = (cardData) => {
     api.addNewCard(cardData).then((formData) => {
         cardList.addItem(formData);
-    });
+        popupNewCard.close()
+    })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(() => {
+            popupNewCard.renderLoading(false)
+        })
+
 }
 
 // добавление новой карточки при помощи попапа popupNewCard/используется PopupWithForm
@@ -150,7 +165,14 @@ imagePopup.setEventListeners();
 const editAvatar = (userData) => {
     api.updateProfileAvatar({ avatar: userData.url }).then((formData) => {
         profile.setUserAvatar(formData);
-    });
+        avatarPopup.close()
+    })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(() => {
+            avatarPopup.renderLoading(false)
+        })
 }
 
 //попап аватара/использ. PopupWithForm
@@ -194,4 +216,3 @@ api.getAllNeedData()
         cardList.renderItems(cards)
     })
     .catch((err) => console.log(err))
-    
