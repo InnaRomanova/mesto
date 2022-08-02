@@ -41,5 +41,5 @@
  :white_check_mark: редактировать профиль;  
  :white_check_mark: добавлять фотографии;  
  :white_check_mark: удалять фотографии;  
- :white_check_mark: ставить лайки;
+ :white_check_mark: ставить лайки;    
  :white_check_mark: менять аватарку. 
