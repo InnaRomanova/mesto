@@ -51,8 +51,7 @@ export const selectors = {
     imagePopup: '.popup__image',
     captionPopup: '.popup__caption',
     openedPopupClass: 'popup_opened',
-    popupEditAvatar: '.popup__avatar-edit',
+    popupEditAvatar: '#popup__avatar-edit',
     avatarEditButton: '.profile__avatar-edit-button',
     popupConfirmationSelector: '.popup__delete-photo',
-
 };

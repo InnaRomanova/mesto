@@ -194,3 +194,4 @@ api.getAllNeedData()
         cardList.renderItems(cards)
     })
     .catch((err) => console.log(err))
+    
