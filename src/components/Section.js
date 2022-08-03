@@ -12,6 +12,6 @@ export default class Section {
 
     addItem(element) {
         const card = this._renderer(element);
-        this._container.prepend(card);
+        this._container.append(card);
     }
 }

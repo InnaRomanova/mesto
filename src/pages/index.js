@@ -42,16 +42,14 @@ enableValidation(validationSettings);
 const profile = new UserInfo(selectors);
 
 const handleProfileFormSubmit = (inputsValues) => {
+    popupProfile.renderLoading(true)
     api.updateUserInfo(inputsValues).then((data) => {
         profile.setUserInfo(data)
         popupProfile.close()
     })
-        .catch((err) => {
-            console.log(err)
-        })
-        .finally(() => {
-            popupProfile.renderLoading(false)
-        })
+    .catch((err) => {
+        console.log(err)
+    })
 };
 
 const popupProfile = new PopupWithForm({
@@ -59,7 +57,8 @@ const popupProfile = new PopupWithForm({
     closeButtonSelector: selectors.closeButtons,
     openedClass: selectors.openedPopupClass,
     formSelector: selectors.formSelector,
-    inputSelector: selectors.inputSelector
+    inputSelector: selectors.inputSelector,
+    submitButtonSelector: validationSettings.submitButtonSelector
 },
     handleProfileFormSubmit);
 popupProfile.setEventListeners();
@@ -85,14 +84,14 @@ function createCard(addCard) {
             if (card.isLiked) {
                 api.deleteCardLike(card.getCardId()).then((cardData) => {
                     card.unsetLike();
-                    card.updateLikeCounter(addCard.likes);
+                    card.updateLikeCounter(cardData.likes);
                 }).catch((err) => {
                     console.error(err);
                 });
             } else {
                 api.addCardLike(card.getCardId()).then((cardData) => {
                     card.setLike();
-                    card.updateLikeCounter(addCard.likes);
+                    card.updateLikeCounter(cardData.likes);
                 }).catch((err) => {
                     console.error(err);
                 });
@@ -126,17 +125,14 @@ const cardAddButton = document.querySelector(selectors.profileAddButton);
 const editAvatarPopup = document.querySelector(selectors.avatarEditButton);
 
 const sendNewCard = (cardData) => {
+    popupNewCard.renderLoading(true)
     api.addNewCard(cardData).then((formData) => {
         cardList.addItem(formData);
         popupNewCard.close()
     })
-        .catch((err) => {
-            console.log(err)
-        })
-        .finally(() => {
-            popupNewCard.renderLoading(false)
-        })
-
+    .catch((err) => {
+        console.log(err)
+    })
 }
 
 // добавление новой карточки при помощи попапа popupNewCard/используется PopupWithForm
@@ -145,7 +141,8 @@ const popupNewCard = new PopupWithForm({
     closeButtonSelector: selectors.closeButtons,
     formSelector: selectors.formSelector,
     inputSelector: selectors.inputSelector,
-    openedClass: selectors.openedPopupClass
+    openedClass: selectors.openedPopupClass,
+    submitButtonSelector: validationSettings.submitButtonSelector
 },
     sendNewCard
 );
@@ -163,16 +160,15 @@ imagePopup.setEventListeners();
 
 //добавление аватарки/userData-это объект
 const editAvatar = (userData) => {
+    avatarPopup.renderLoading(true)
     api.updateProfileAvatar({ avatar: userData.url }).then((formData) => {
         profile.setUserAvatar(formData);
-        avatarPopup.close()
+        avatarPopup.close();
     })
-        .catch((err) => {
-            console.log(err)
-        })
-        .finally(() => {
-            avatarPopup.renderLoading(false)
-        })
+    .catch((err) => {
+        console.log(err)
+    })
+
 }
 
 //попап аватара/использ. PopupWithForm
@@ -181,7 +177,8 @@ const avatarPopup = new PopupWithForm({
     closeButtonSelector: selectors.closeButtons,
     formSelector: selectors.formSelector,
     inputSelector: selectors.inputSelector,
-    openedClass: selectors.openedPopupClass
+    openedClass: selectors.openedPopupClass,
+    submitButtonSelector: validationSettings.submitButtonSelector
 },
     editAvatar
 );
@@ -193,7 +190,8 @@ const popupWithConfirmation = new PopupWithForm({
     closeButtonSelector: selectors.closeButtons,
     formSelector: selectors.formSelector,
     inputSelector: selectors.inputSelector,
-    openedClass: selectors.openedPopupClass
+    openedClass: selectors.openedPopupClass,
+    submitButtonSelector: validationSettings.submitButtonSelector
 }
 );
 
