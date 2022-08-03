@@ -14,10 +14,10 @@ export default class UserInfo {
     }
 
     setUserInfo(data) {
-        this._nameField.textContent = data.name;
-        this._aboutField.textContent = data.about;
+        this._nameField.textContent = data.name !== '' ? data.name : '';
+        this._aboutField.textContent = data.about !== '' ? data.about : '';
         this.setUserAvatar(data);
-        this._userId = data._id;
+        this._userId = data._id !== null ? data._id : null;
     }
 
     setUserAvatar(data) {
