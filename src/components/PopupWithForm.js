@@ -34,9 +34,11 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  close() {
+  close(render = true) {
     super.close();
-    this.renderLoading(false)
+    if (render) {
+      this.renderLoading(false)
+    }
     this._form.reset();
   }
 
@@ -46,7 +48,6 @@ export default class PopupWithForm extends Popup {
 
   //Уведомляет пользователя, что идет процесс загрузки, обмена с сервером
   renderLoading(isLoading) {
-    console.log(isLoading);
     if (isLoading === true) {
       this._buttonElement.textContent = 'Сохранение ...'
     } else {
