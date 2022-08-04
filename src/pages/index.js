@@ -47,9 +47,9 @@ const handleProfileFormSubmit = (inputsValues) => {
         profile.setUserInfo(data)
         popupProfile.close()
     })
-    .catch((err) => {
-        console.log(err)
-    })
+        .catch((err) => {
+            console.log(err)
+        })
 };
 
 const popupProfile = new PopupWithForm({
@@ -104,7 +104,7 @@ function createCard(addCard) {
             popupWithConfirmation.updateSubmitHandler(() => {
                 api.removeCard(cardId).then(() => {
                     cardElement.remove();
-                    popupWithConfirmation.close();
+                    popupWithConfirmation.close(false);
                 }).catch((err) => {
                     console.error(err);
                 });
@@ -130,9 +130,9 @@ const sendNewCard = (cardData) => {
         cardList.addItem(formData);
         popupNewCard.close()
     })
-    .catch((err) => {
-        console.log(err)
-    })
+        .catch((err) => {
+            console.log(err)
+        })
 }
 
 // добавление новой карточки при помощи попапа popupNewCard/используется PopupWithForm
@@ -165,9 +165,9 @@ const editAvatar = (userData) => {
         profile.setUserAvatar(formData);
         avatarPopup.close();
     })
-    .catch((err) => {
-        console.log(err)
-    })
+        .catch((err) => {
+            console.log(err)
+        })
 
 }
 
@@ -211,6 +211,6 @@ editAvatarPopup.addEventListener('click', () => {
 api.getAllNeedData()
     .then(([cards, userData]) => {
         profile.setUserInfo(userData)
-        cardList.renderItems(cards)
+        cardList.renderItems(cards.reverse())
     })
     .catch((err) => console.log(err))
